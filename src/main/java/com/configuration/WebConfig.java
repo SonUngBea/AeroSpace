@@ -1,5 +1,6 @@
 package com.configuration;
 
+import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com"})
+@ComponentScan(basePackages = { "com" })
 public class WebConfig {
 	@Bean
 	public ViewResolver viewResolver() {
@@ -23,5 +24,15 @@ public class WebConfig {
 		viewResolver.setSuffix(".jsp");
 
 		return viewResolver;
+	}
+
+	@Bean
+	public HandlebarsViewResolver handlebarsViewResolver() {
+		HandlebarsViewResolver handlebarsViewResolver = new HandlebarsViewResolver();
+		handlebarsViewResolver.setPrefix("/WEB-INF/views/");
+		handlebarsViewResolver.setOrder(0);
+		handlebarsViewResolver.setSuffix(".hbs");
+
+		return handlebarsViewResolver;
 	}
 }
