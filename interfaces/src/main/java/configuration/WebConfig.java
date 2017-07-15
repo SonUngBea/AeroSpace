@@ -1,6 +1,7 @@
-package com.configuration;
+package configuration;
 
 import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
+import controller.Controller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com" })
+@ComponentScan(basePackageClasses = Controller.class)
 public class WebConfig {
 	@Bean
 	public ViewResolver viewResolver() {
