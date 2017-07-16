@@ -1,20 +1,23 @@
-package com.configuration;
+package configuration;
 
 import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
+import controller.Controller;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 /**
- * Created by woongs on 2017. 7. 14..
+ * Created by coupang on 2017. 7. 14..
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com" })
+@Import({ RootApplicationContextConfig.class })
+@ComponentScan(basePackageClasses = Controller.class)
 public class WebConfig {
 	@Bean
 	public ViewResolver viewResolver() {
