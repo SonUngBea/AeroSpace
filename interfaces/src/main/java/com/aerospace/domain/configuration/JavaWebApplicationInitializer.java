@@ -1,4 +1,4 @@
-package configuration;
+package com.aerospace.domain.configuration;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;

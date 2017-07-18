@@ -1,4 +1,4 @@
-package repository;
+package com.aerospace.domain.repository;
 
 import org.springframework.stereotype.Repository;
 

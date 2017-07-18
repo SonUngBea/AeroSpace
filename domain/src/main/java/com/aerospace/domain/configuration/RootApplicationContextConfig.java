@@ -1,6 +1,6 @@
-package configuration;
+package com.aerospace.domain.configuration;
 
-import domainService.DomainApplications;
+import com.aerospace.domain.application.DomainApplications;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -13,7 +13,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
-import repository.Domain;
+import com.aerospace.domain.repository.Domain;
 
 import javax.sql.DataSource;
 
@@ -44,7 +44,7 @@ public class RootApplicationContextConfig {
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-		sqlSessionFactoryBean.setMapperLocations(resourcePatternResolver.getResources("classpath*:repository/*.xml"));
+		sqlSessionFactoryBean.setMapperLocations(resourcePatternResolver.getResources("classpath*:com.aerospace.domain.repository/*.xml"));
 		sqlSessionFactoryBean.setDataSource(dataSource());
 		return sqlSessionFactoryBean.getObject();
 	}

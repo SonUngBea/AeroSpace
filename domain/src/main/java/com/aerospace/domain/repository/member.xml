@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="repository.MemberDao">
+<mapper namespace="com.aerospace.domain.repository.MemberDao">
 
-  <select id="select" parameterType="String" resultType="repository.Member">
+  <select id="select" parameterType="String" resultType="com.aerospace.domain.repository.Member">
     SELECT
       *
     FROM
@@ -11,7 +11,7 @@
       memberSeq = #{memberSeq}
   </select>
 
-  <insert id="insert" useGeneratedKeys="true" keyProperty="memberSeq" parameterType="repository.Member">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="memberSeq" parameterType="com.aerospace.domain.repository.Member">
     INSERT INTO ojtproject.member (
     memberSeq,
     email,

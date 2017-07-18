@@ -1,9 +1,9 @@
-package domainService;
+package com.aerospace.domain.application;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.Member;
-import repository.MemberRepository;
+import com.aerospace.domain.repository.Member;
+import com.aerospace.domain.repository.MemberRepository;
 
 /**
  * Created by coupang on 2017. 7. 16..
