@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class MemberRepository {
+
 	@Autowired
 	private MemberDao memberDao;
 
