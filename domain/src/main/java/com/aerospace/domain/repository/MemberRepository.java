@@ -1,4 +1,4 @@
-package repository;
+package com.aerospace.domain.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class MemberRepository {
+
 	@Autowired
 	private MemberDao memberDao;
 

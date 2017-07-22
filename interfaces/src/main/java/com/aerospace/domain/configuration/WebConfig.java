@@ -1,4 +1,4 @@
-package configuration;
+package com.aerospace.domain.configuration;
 
 import com.github.jknack.handlebars.springmvc.HandlebarsViewResolver;
 import controller.Controller;
