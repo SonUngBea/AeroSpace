@@ -25,9 +25,9 @@ public class HelloController {
 		mav.setViewName("/login/login");
 		String id="";
 		try {
-			id = dbConnectTestService.getId("1");
+			id = dbConnectTestService.getId(2);
 		} catch (Exception e) {
-
+			System.out.println(e);
 		}
 		mav.addObject("id", id);
 
