@@ -1,17 +1,13 @@
 package com.aerospace.domain.configuration;
 
-import com.aerospace.domain.repository.Domain;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
@@ -22,56 +18,38 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackages = "com.aerospace.domain")
-@EnableTransactionManagement(proxyTargetClass = true)
+@EnableTransactionManagement
 @EnableJpaRepositories("com.aerospace.domain")
 public class RootApplicationContextConfig {
 
-	@Autowired
-	private ResourcePatternResolver resourcePatternResolver;
+	private static final String LOCAL_MYSQL_URL = "jdbc:mysql://127.0.0.1:3306/ojtproject";
+	private static final String AWS_MYSQL_URL = "jdbc:mysql://13.124.150.31:3306/ojtproject?zeroDateTimeBehavior=convertToNull";
+	private static final String PERSISTENCE_UNIT_NAME = "arnold";
 
-	@Bean
+	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 
 		dataSource.setUsername("ojt_venice");
 		dataSource.setPassword("venice");
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://13.124.150.31:3306/ojtproject?zeroDateTimeBehavior=convertToNull");
-
+		dataSource.setUrl(LOCAL_MYSQL_URL);
 		return dataSource;
 	}
 
 	@Bean
-	@Autowired
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-		emf.setDataSource(dataSource);
-		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+		emf.setDataSource(this.dataSource());
 		emf.setPackagesToScan("com.aerospace.domain");
-
+		emf.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
 		return emf;
 	}
 
 	@Bean
-	@DependsOn(value = "entityManagerFactory")
-	@Autowired
-	public JpaTransactionManager transactionManager(EntityManagerFactory emf) {
-		JpaTransactionManager bean = new JpaTransactionManager(emf);
-
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+		PlatformTransactionManager bean = new JpaTransactionManager(emf);
 		return bean;
 	}
-//	@Bean
-//	public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
-//		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-//		sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
-//		sqlSessionFactoryBean.setMapperLocations(resourcePatternResolver.getResources("classpath*:com/domain/repository/*.xml"));
-//		sqlSessionFactoryBean.setDataSource(dataSource());
-//		return sqlSessionFactoryBean;
-//	}
-//
-//	@Bean
-//	public PlatformTransactionManager platformTransactionManager() {
-//		return new DataSourceTransactionManager(dataSource());
-//	}
 
 }

@@ -12,10 +12,10 @@ import java.sql.*;
 /**
  * Created by coupang on 2017. 7. 22..
  */
-@Service
+//@Service
 public class DBConnectTestService {
 
-	@Autowired
+//	@Autowired
 	MemberRepository memberRepository;
 
 	public String getId(Integer memberSeq) throws SQLException, ClassNotFoundException {
@@ -38,7 +38,8 @@ public class DBConnectTestService {
 //		c.close();
 //		return member.getName();
 		Member member =  memberRepository.findByMemberSeq(memberSeq);
-		return member.getName();
+//		return member.getName();
+		return null;
 	}
 
 }

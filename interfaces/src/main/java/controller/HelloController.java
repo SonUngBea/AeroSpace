@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class HelloController {
-	@Autowired
+//	@Autowired
 	private DBConnectTestService dbConnectTestService;
 
 	@RequestMapping(value = "/hello")

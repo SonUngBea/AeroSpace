@@ -18,6 +18,7 @@ public class MemberJoinService {
 		member.setEmail(email);
 		member.setPassword(password);
 		member.setName(name);
+
 		memberRepository.save(member);
 	}
 }
