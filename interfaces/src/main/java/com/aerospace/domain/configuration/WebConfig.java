@@ -6,10 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import java.util.List;
 
 /**
  * Created by coupang on 2017. 7. 14..
@@ -18,7 +24,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @Import({ RootApplicationContextConfig.class })
 @ComponentScan(basePackageClasses = Controller.class)
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -37,5 +43,12 @@ public class WebConfig {
 		handlebarsViewResolver.setSuffix(".hbs");
 
 		return handlebarsViewResolver;
+	}
+
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		super.configureMessageConverters(converters);
+
+		converters.add(new CustomHttpMessageConverter());
 	}
 }

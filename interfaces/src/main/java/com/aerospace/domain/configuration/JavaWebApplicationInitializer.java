@@ -23,12 +23,12 @@ public class JavaWebApplicationInitializer implements WebApplicationInitializer 
 
 		AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
 		servletAppContext.register(WebConfig.class);
-
 		DispatcherServlet dispatcherServlet = new DispatcherServlet(servletAppContext);
 
 		ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", dispatcherServlet);
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
+		servlet.setAsyncSupported(true);
 
 		FilterRegistration.Dynamic filter = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
 		filter.setInitParameter("encoding", "UTF-8");

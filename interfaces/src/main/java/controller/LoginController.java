@@ -19,4 +19,10 @@ public class LoginController {
 
 		return mav;
 	}
+
+	@RequestMapping("/loginProcess")
+	public ModelAndView loginProcess(){
+
+		return null;
+	}
 }
