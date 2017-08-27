@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepository extends CrudRepository<Member, Integer> {
 	Member findByMemberSeq(Integer memberSeq);
+	Member findByEmail(String email);
 	void deleteByEmail(String email);
 }

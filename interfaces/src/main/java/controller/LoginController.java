@@ -1,7 +1,11 @@
 package controller;
 
+import com.aerospace.domain.application.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -10,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
+	@Autowired
+	private LoginService loginService;
 
 	@RequestMapping("/showLoginFrm")
 	public ModelAndView showLoginFrm() {
@@ -21,8 +28,12 @@ public class LoginController {
 	}
 
 	@RequestMapping("/loginProcess")
-	public ModelAndView loginProcess(){
+	@ResponseBody
+	public String loginProcess(@RequestParam String email, @RequestParam String password) {
+		if (!loginService.isLoginSuccess(email, password)) {
+			return "fail";
+		}
 
-		return null;
+		return "success";
 	}
 }

@@ -3,5 +3,5 @@ dependencies {
 	compile 'org.hibernate:hibernate-entitymanager:4.2.20.Final'
 	compile 'org.hibernate:hibernate-validator:4.3.2.Final'
 	compile 'org.hibernate:hibernate-validator-annotation-processor:4.3.2.Final'
-
+	compile 'commons-codec:commons-codec:1.10'
 }

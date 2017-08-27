@@ -1,9 +1,11 @@
 package com.aerospace.domain.application;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.aerospace.domain.common.Common;
 import com.aerospace.domain.repository.Member;
 import com.aerospace.domain.repository.MemberRepository;
+import com.aerospace.domain.util.EncryptManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by coupang on 2017. 7. 16..
@@ -16,7 +18,7 @@ public class MemberJoinService {
 	public void join(String email, String password, String name) {
 		Member member = new Member();
 		member.setEmail(email);
-		member.setPassword(password);
+		member.setPassword(EncryptManager.encryptWithSalt(password, Common.CONSTANT.PASSWORD_KEY));
 		member.setName(name);
 
 		memberRepository.save(member);

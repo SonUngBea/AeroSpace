@@ -1,8 +1,30 @@
 <html>
 <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('#loginButton').click(function () {
+                $.ajax({
+                    type: 'post',
+                    data: {
+                        'email' : $('#email').val(),
+                        'password' : $('#password').val()
+                    },
+                    url: '/login/loginProcess',
+                    success : function (data) {
+                        $('#result').val(data);
+                    }
+                });
+            })});
+
+    </script>
     <title>Hello World!</title>
 </head>
 <body>
-{{id}}
+<input type="text" name="email" id="email" placeholder="Email">
+<input type="text" name="password" id="password" placeholder="Password">
+<input type="submit" name="loginButton" id="loginButton" value="전송">
+<input type="text" name="result" id="result" placeholder="결과">
 </body>
 </html>
