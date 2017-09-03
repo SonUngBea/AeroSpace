@@ -24,7 +24,7 @@ public class MemberApiController {
 	@ApiPermission
 	@RequestMapping({"/{memberSeq}"})
 	@ResponseBody
-	public Member findMemberDto(@PathVariable("memberSeq") String memberSeq) {
+	public Member findMemberDto(@PathVariable("memberSeq") Integer memberSeq) {
 		return this.memberRepository.findByMemberSeq(memberSeq);
 	}
 }

@@ -26,6 +26,7 @@ public class RootApplicationContextConfig {
 	private static final String AWS_MYSQL_URL = "jdbc:mysql://13.124.150.31:3306/ojtproject?zeroDateTimeBehavior=convertToNull";
 	private static final String PERSISTENCE_UNIT_NAME = "arnold";
 
+
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
@@ -33,7 +34,7 @@ public class RootApplicationContextConfig {
 		dataSource.setUsername("ojt_venice");
 		dataSource.setPassword("venice");
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl(LOCAL_MYSQL_URL);
+		dataSource.setUrl(AWS_MYSQL_URL);
 		return dataSource;
 	}
 
