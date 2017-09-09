@@ -2,9 +2,6 @@ package com.aerospace.domain.configuration;
 
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import javax.annotation.Resource;
-
 /**
  * Created by coupang on 2017. 9. 3..
  */
