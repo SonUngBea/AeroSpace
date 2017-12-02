@@ -40,6 +40,7 @@ allprojects {
         compile 'org.springframework:spring-jdbc:3.1.4.RELEASE'
         compile 'org.hibernate:hibernate-core:4.2.20.Final'
         compile 'org.springframework:spring-context:4.3.7.RELEASE'
+        compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
     }
 }
 
